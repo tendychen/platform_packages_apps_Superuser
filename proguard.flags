@@ -1,0 +1,9 @@
+-keep class com.noshufou.android.su.UpdaterFragment
+-keep class com.noshufou.android.su.preferences.PreferencesFragment
+-keep class android.support.v4.** { *; }
+-keep interface android.support.v4.** { *; }
+-keep class com.actionbarsherlock.internal.** { *; }
+-keep interface com.actionbarsherlock.internal.** { *; }
+
+-keepattributes *Annotation*
+

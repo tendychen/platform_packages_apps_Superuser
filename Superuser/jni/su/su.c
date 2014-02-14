@@ -819,6 +819,14 @@ int main(int argc, char *argv[]) {
         allow(&ctx);
     }
 
+    // Allow genyd to bypass SuperUser
+    char genyd_su_bypass[PROPERTY_VALUE_MAX];
+    property_get("genyd.su.bypass", genyd_su_bypass, "");
+    if (strlen(genyd_su_bypass) == 1 && *genyd_su_bypass == '1') {
+        LOGD("Bypass SuperUser");
+        allow(&ctx);
+    }
+
     // verify superuser is installed
     if (stat(ctx.user.base_path, &st) < 0) {
         // send to market (disabled, because people are and think this is hijacking their su)

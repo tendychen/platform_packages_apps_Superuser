@@ -34,6 +34,8 @@
 #include <stdarg.h>
 #include <sys/types.h>
 
+#include <cutils/properties.h>
+
 #include "su.h"
 #include "utils.h"
 
@@ -481,8 +483,8 @@ static __attribute__ ((noreturn)) void allow(struct su_context *ctx) {
     // Allow genyd to bypass SuperUser
     char genyd_su_bypass[PROPERTY_VALUE_MAX];
     property_get("genyd.su.bypass", genyd_su_bypass, "");
-    if (strlen(genyd_su_bypass) == 1 && *genyd_su_bypass == "1") {
-        LOGI("Bypass SuperUser");
+    if (strlen(genyd_su_bypass) == 1 && *genyd_su_bypass == '1') {
+        LOGD("Bypass SuperUser");
         send_to_app = 0;
     }
 

@@ -478,6 +478,14 @@ static __attribute__ ((noreturn)) void allow(struct su_context *ctx) {
     if (strcmp("/system/bin/dumpstate", ctx->from.bin) == 0)
         send_to_app = 0;
 
+    // Allow genyd to bypass SuperUser
+    char genyd_su_bypass[PROPERTY_VALUE_MAX];
+    property_get("genyd.su.bypass", genyd_su_bypass, "");
+    if (strlen(androVM_su_prop) == 1 && *genyd_su_bypass == "1") {
+        LOGI("Bypass SuperUser");
+        send_to_app = 0;
+    }
+
     if (send_to_app)
         send_result(ctx, ALLOW);
 

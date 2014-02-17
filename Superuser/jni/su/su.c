@@ -33,6 +33,8 @@
 #include <stdarg.h>
 #include <sys/types.h>
 
+#include <cutils/properties.h>
+
 #include "su.h"
 #include "utils.h"
 
